@@ -3,9 +3,16 @@ package com.vitorlucas.os.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+@Entity
+@DiscriminatorValue(value = "Tec")
 public class Tecnico extends Pessoa {
 	private static final long serialVersionUID = 1L;
 
+	@OneToMany(mappedBy = "tecnico")
 	private List<OrdemServico> os = new ArrayList<>();
 	
 	public Tecnico() {

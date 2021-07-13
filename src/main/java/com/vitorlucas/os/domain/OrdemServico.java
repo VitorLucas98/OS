@@ -1,37 +1,57 @@
 package com.vitorlucas.os.domain;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.vitorlucas.os.domain.enums.Prioridade;
 import com.vitorlucas.os.domain.enums.Status;
 
+@Entity(name = "tb_ordemServico")
 public class OrdemServico implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private LocalDate dataAbertura;
-	private LocalDate dataFechamento;
-	private Integer prioridade;
+
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	private LocalDateTime dataAbertura;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	private LocalDateTime dataFechamento;
+	private Prioridade prioridade;
 	private String observação;
 	private Integer status;
+	
+	@ManyToOne
+	@JoinColumn(name = "tecnico_id")
 	private Tecnico tecnico;
+	
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
 	
 	public OrdemServico() {
-		dataAbertura = LocalDate.now();
-		prioridade = Prioridade.BAIXA.getCod();
+		dataAbertura = LocalDateTime.now();
+		prioridade = Prioridade.BAIXA;
 		status = Status.ABERTO.getCod();
 	}
 
-	public OrdemServico(Long id, LocalDate dataFechamento, Prioridade prioridade,
+	public OrdemServico(Long id, Prioridade prioridade,
 			String observação, Status status, Tecnico tecnico, Cliente cliente) {
 		super();
 		this.id = id;
-		dataAbertura = LocalDate.now();
-		this.dataFechamento = dataFechamento;
-		this.prioridade = (prioridade == null) ? 0 : prioridade.getCod();
+		dataAbertura = LocalDateTime.now();
+		this.prioridade = prioridade;
 		this.observação = observação;
 		this.status = (status == null) ? 0 : status.getCod();
 		this.tecnico = tecnico;
@@ -46,28 +66,28 @@ public class OrdemServico implements Serializable {
 		this.id = id;
 	}
 
-	public LocalDate getDataAbertura() {
+	public LocalDateTime getDataAbertura() {
 		return dataAbertura;
 	}
 
-	public void setDataAbertura(LocalDate dataAbertura) {
+	public void setDataAbertura(LocalDateTime dataAbertura) {
 		this.dataAbertura = dataAbertura;
 	}
 
-	public LocalDate getDataFechamento() {
+	public LocalDateTime getDataFechamento() {
 		return dataFechamento;
 	}
 
-	public void setDataFechamento(LocalDate dataFechamento) {
+	public void setDataFechamento(LocalDateTime dataFechamento) {
 		this.dataFechamento = dataFechamento;
 	}
 
 	public Prioridade getPrioridade() {
-		return Prioridade.toEnum(prioridade);
+		return prioridade;
 	}
 
 	public void setPrioridade(Prioridade prioridade) {
-		this.prioridade = prioridade.getCod();
+		this.prioridade = prioridade;
 	}
 
 	public String getObservação() {
