@@ -7,8 +7,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-@Entity
-@DiscriminatorValue(value = "CLI")
+@Entity(name = "tb_cliente")
+@DiscriminatorValue(value = "CLIENTE")
 public class Cliente extends Pessoa{
 	private static final long serialVersionUID = 1L;
 

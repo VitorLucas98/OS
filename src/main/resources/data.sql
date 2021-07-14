@@ -1,4 +1,14 @@
-INSERT INTO TB_PESSOA (ID, NOME, CPF, TELEFONE, TIPO) VALUES(NULL, 'Vitor Lucas', '925.125.620-93', '(72) 36694-6345', 'TEC');
-INSERT INTO TB_PESSOA (ID, NOME, CPF, TELEFONE, TIPO) VALUES(NULL, 'Luciana Fernandes', '006.697.060-19', '(57) 31420-0497', 'CLI');
+INSERT INTO TB_PESSOA  (ID, TIPO, CPF, NOME, TELEFONE) VALUES (NULL, 'CLIENTE', '925.125.620-93', 'Vitor Lucas', '(72) 36694-6345');  
+INSERT INTO TB_PESSOA  (ID, TIPO, CPF, NOME, TELEFONE) VALUES (NULL, 'CLIENTE', '468.172.840-31', 'Samira Guedes', '(52) 47619-2105'); 
+INSERT INTO TB_PESSOA  (ID, TIPO, CPF, NOME, TELEFONE) VALUES (NULL, 'CLIENTE', '604.294.230-12', 'Luiza Sampaio', '(60) 35828-7966'); 
+INSERT INTO TB_PESSOA  (ID, TIPO, CPF, NOME, TELEFONE) VALUES (NULL, 'CLIENTE', '527.514.440-75', 'Jõao Victor', '(64) 50550-1131'); 
+INSERT INTO TB_PESSOA  (ID, TIPO, CPF, NOME, TELEFONE) VALUES (NULL, 'CLIENTE', '952.283.650-87', 'Fernanda Lima', '(76) 56703-1105'); 
 
-INSERT INTO tb_ordem_Servico (ID, data_Abertura, data_Fechamento, prioridade, observação, status, tecnico_id, cliente_id) VALUES (NULL, '2020-10-19 12:42', '2020-10-24 15:21', 0, 'CONSERTO DA FONTE', 1, 1, 2);
+INSERT INTO TB_PESSOA  (ID, TIPO, CPF, NOME, TELEFONE) VALUES (NULL, 'TECNICO', '895.303.950-94', 'Vitor Costa', '(20) 34441-6703'); 
+INSERT INTO TB_PESSOA  (ID, TIPO, CPF, NOME, TELEFONE) VALUES (NULL, 'TECNICO', '013.725.300-10', 'Pablicio de Jesus', '(71) 15985-2905');
+INSERT INTO TB_PESSOA  (ID, TIPO, CPF, NOME, TELEFONE) VALUES (NULL, 'TECNICO', '369.576.550-08', 'Felipe Eduardo', '(19) 11430-5693');
+
+
+INSERT INTO tb_ordem_Servico (ID, data_Abertura, data_Fechamento, prioridade, observacao, status, tecnico_id, cliente_id) VALUES (NULL, '2020-10-19 12:42', '2020-10-24 15:21', 0, 'CONSERTO DA FONTE', 1, 6, 1);
+
+INSERT INTO tb_ordem_Servico (ID, data_Abertura, data_Fechamento, prioridade, observacao, status, tecnico_id, cliente_id) VALUES (NULL, '2021-04-12 10:02', '2021-04-25 16:07', 0, 'MANUTENÇÃO PREVENTIVA', 0, 7, 2);

@@ -7,8 +7,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-@Entity
-@DiscriminatorValue(value = "Tec")
+@Entity(name = "tb_tecnico")
+@DiscriminatorValue(value = "TECNICO")
 public class Tecnico extends Pessoa {
 	private static final long serialVersionUID = 1L;
 

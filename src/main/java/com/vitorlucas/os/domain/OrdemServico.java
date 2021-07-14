@@ -27,8 +27,8 @@ public class OrdemServico implements Serializable {
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime dataFechamento;
-	private Prioridade prioridade;
-	private String observação;
+	private Integer prioridade;
+	private String observacao;
 	private Integer status;
 	
 	@ManyToOne
@@ -42,17 +42,17 @@ public class OrdemServico implements Serializable {
 	
 	public OrdemServico() {
 		dataAbertura = LocalDateTime.now();
-		prioridade = Prioridade.BAIXA;
+		prioridade = Prioridade.BAIXA.getCod();
 		status = Status.ABERTO.getCod();
 	}
 
 	public OrdemServico(Long id, Prioridade prioridade,
-			String observação, Status status, Tecnico tecnico, Cliente cliente) {
+			String observacao, Status status, Tecnico tecnico, Cliente cliente) {
 		super();
 		this.id = id;
 		dataAbertura = LocalDateTime.now();
-		this.prioridade = prioridade;
-		this.observação = observação;
+		this.prioridade = (prioridade == null) ? 0 : prioridade.getCod();
+		this.observacao = observacao;
 		this.status = (status == null) ? 0 : status.getCod();
 		this.tecnico = tecnico;
 		this.cliente = cliente;
@@ -83,19 +83,19 @@ public class OrdemServico implements Serializable {
 	}
 
 	public Prioridade getPrioridade() {
-		return prioridade;
+		return Prioridade.toEnum(prioridade);
 	}
 
 	public void setPrioridade(Prioridade prioridade) {
-		this.prioridade = prioridade;
+		this.prioridade = prioridade.getCod();
 	}
 
-	public String getObservação() {
-		return observação;
+	public String getObservacao() {
+		return observacao;
 	}
 
-	public void setObservação(String observação) {
-		this.observação = observação;
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 
 	public Status getStatus() {
