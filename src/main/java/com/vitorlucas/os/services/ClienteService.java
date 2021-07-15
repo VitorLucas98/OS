@@ -2,10 +2,9 @@ package com.vitorlucas.os.services;
 
 import java.util.Optional;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -59,7 +58,7 @@ public class ClienteService {
 	public void delete(Long id) {
 		try {
 			repository.deleteById(id);
-		}catch (EntityNotFoundException e) {
+		}catch (EmptyResultDataAccessException e) {
 			throw new ObjectNotFoundException("Cliente não encontrado");
 		}catch (DataIntegrityViolationException e) {
 			throw new DatabaseException("Erro ao deletar cliente");

@@ -9,6 +9,6 @@ INSERT INTO TB_PESSOA  (ID, TIPO, CPF, NOME, TELEFONE) VALUES (NULL, 'TECNICO', 
 INSERT INTO TB_PESSOA  (ID, TIPO, CPF, NOME, TELEFONE) VALUES (NULL, 'TECNICO', '369.576.550-08', 'Felipe Eduardo', '(19) 11430-5693');
 
 
-INSERT INTO tb_ordem_Servico (ID, data_Abertura, data_Fechamento, prioridade, observacao, status, tecnico_id, cliente_id) VALUES (NULL, '2020-10-19 12:42', '2020-10-24 15:21', 0, 'CONSERTO DA FONTE', 1, 6, 1);
+INSERT INTO tb_ordem_Servico (ID, data_Abertura, data_Fechamento, prioridade, observacao, status, tecnico_id, cliente_id) VALUES (NULL, '2020-10-19 12:42', '2020-10-24 15:21', 0, 'CONSERTO DA FONTE', 2, 6, 1);
 
-INSERT INTO tb_ordem_Servico (ID, data_Abertura, data_Fechamento, prioridade, observacao, status, tecnico_id, cliente_id) VALUES (NULL, '2021-04-12 10:02', '2021-04-25 16:07', 0, 'MANUTENÇÃO PREVENTIVA', 0, 7, 2);
+INSERT INTO tb_ordem_Servico (ID, data_Abertura, data_Fechamento, prioridade, observacao, status, tecnico_id, cliente_id) VALUES (NULL, '2021-04-12 10:02', '2021-04-25 16:07', 0, 'MANUTENÇÃO PREVENTIVA', 2, 7, 2);
