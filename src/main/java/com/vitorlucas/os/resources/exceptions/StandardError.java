@@ -3,15 +3,18 @@ package com.vitorlucas.os.resources.exceptions;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class StandardError implements Serializable{
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+public class StandardError implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime timestamp;
     private Integer status;
     private String error;
     private String message;
     private String path;
-
+    
     public StandardError() {
     }
 
@@ -63,4 +66,6 @@ public class StandardError implements Serializable{
 	public void setPath(String path) {
 		this.path = path;
 	}
+    
+    
 }

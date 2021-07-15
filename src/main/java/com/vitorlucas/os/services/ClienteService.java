@@ -3,7 +3,6 @@ package com.vitorlucas.os.services;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
-import javax.swing.text.MaskFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -25,9 +24,8 @@ public class ClienteService {
 	private ClienteRepository repository;
 
 	@Transactional(readOnly = true)
-	public ClienteDTO findByCpf(String cpf) {
-		cpf = formataCpf(cpf);
-		Optional<Cliente> cli = repository.findByCpf(cpf);
+	public ClienteDTO findById(Long id) {
+		Optional<Cliente> cli = repository.findById(id);
 		Cliente obj = cli.orElseThrow(() -> new ObjectNotFoundException("Cliente não encontrado"));
 		return new ClienteDTO(obj);
 	}
@@ -41,7 +39,7 @@ public class ClienteService {
 	@Transactional
 	public ClienteDTO insert(ClienteDTO dto) {
 		Cliente entity = new Cliente();
-		entity.setCpf(formataCpf(dto.getCpf()));
+		entity.setCpf(dto.getCpf());
 		entity.setNome(dto.getNome());
 		entity.setTelefone(dto.getTelefone());
 		entity = repository.save(entity);
@@ -49,19 +47,18 @@ public class ClienteService {
 	}
 	
 	@Transactional
-	public ClienteDTO update(String cpf, ClienteDTO dto) {
-		Optional<Cliente> cli = repository.findByCpf(cpf);
-		Cliente entity = cli.orElseThrow(() -> new ObjectNotFoundException("Cliente não encontrado"));
+	public ClienteDTO update(Long id, ClienteDTO dto) {
+		Cliente entity = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Cliente não encontrado"));
+		entity.setCpf(dto.getCpf());
 		entity.setNome(dto.getNome());
 		entity.setTelefone(dto.getTelefone());
 		entity = repository.save(entity);
 		return new ClienteDTO(entity);
 	}
 	
-	public void delete(String cpf) {
+	public void delete(Long id) {
 		try {
-			Cliente entity = repository.findByCpf(cpf).get();
-			repository.delete(entity);
+			repository.deleteById(id);
 		}catch (EntityNotFoundException e) {
 			throw new ObjectNotFoundException("Cliente não encontrado");
 		}catch (DataIntegrityViolationException e) {
@@ -69,6 +66,7 @@ public class ClienteService {
 		}
 	}
 	
+	/*
 	private String formataCpf(String cpf) {
 		if (!cpf.contains(".")) {
 			try {
@@ -81,4 +79,5 @@ public class ClienteService {
 		}
 		return cpf;
 	}
+	*/
 }

@@ -2,16 +2,15 @@ package com.vitorlucas.os.dto;
 
 import java.io.Serializable;
 
-
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import com.vitorlucas.os.domain.Cliente;
-import com.vitorlucas.os.services.validation.ClienteValid;
+import com.vitorlucas.os.domain.Tecnico;
+import com.vitorlucas.os.services.validation.TecnicoValid;
 
-@ClienteValid
-public class ClienteDTO implements Serializable{
+@TecnicoValid
+public class TecnicoDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
@@ -26,16 +25,16 @@ public class ClienteDTO implements Serializable{
 	private String telefone;
 
 	
-	public ClienteDTO() {
+	public TecnicoDTO() {
 	}
 
-	public ClienteDTO(String nome, String cpf, String telefone) {
+	public TecnicoDTO(String nome, String cpf, String telefone) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;
 	}
 	
-	public ClienteDTO(Cliente entity) {
+	public TecnicoDTO(Tecnico entity) {
 		id = entity.getId();
 		nome = entity.getNome();
 		cpf = entity.getCpf();
@@ -71,7 +70,4 @@ public class ClienteDTO implements Serializable{
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-
-
-
 }

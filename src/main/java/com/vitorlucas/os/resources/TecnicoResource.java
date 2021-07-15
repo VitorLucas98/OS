@@ -20,44 +20,44 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.vitorlucas.os.dto.ClienteDTO;
-import com.vitorlucas.os.services.ClienteService;
+import com.vitorlucas.os.dto.TecnicoDTO;
+import com.vitorlucas.os.services.TecnicoService;
 
 @RestController
-@RequestMapping(value = "/clientes")
-public class ClienteResource {
+@RequestMapping(value = "/tecnicos")
+public class TecnicoResource {
 	
 	@Autowired
-	private ClienteService service;
+	private TecnicoService service;
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<ClienteDTO> findByid(@PathVariable Long id){
-		ClienteDTO dto = service.findById(id);
+	public ResponseEntity<TecnicoDTO> findByid(@PathVariable Long id){
+		TecnicoDTO dto = service.findById(id);
 		return ResponseEntity.ok(dto);
 	}
 	
 	@GetMapping
-	public ResponseEntity<Page<ClienteDTO>> findAllPaged(
+	public ResponseEntity<Page<TecnicoDTO>> findAllPaged(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "size", defaultValue = "10") Integer size, 
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
 			@RequestParam(value = "orderBy", defaultValue = "nome") String orderBy){
 		
 		PageRequest pageble = PageRequest.of(page, size, Direction.valueOf(direction), orderBy);
-		Page<ClienteDTO> list = service.findAllPaged(pageble);
+		Page<TecnicoDTO> list = service.findAllPaged(pageble);
 		
 		return ResponseEntity.ok(list);
 	}
 	
 	@PostMapping
-	public ResponseEntity<ClienteDTO> insert(@RequestBody @Valid ClienteDTO dto){
+	public ResponseEntity<TecnicoDTO> insert(@RequestBody @Valid TecnicoDTO dto){
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<ClienteDTO> update( @PathVariable Long id, @Valid @RequestBody ClienteDTO dto){
+	public ResponseEntity<TecnicoDTO> update( @PathVariable Long id, @Valid @RequestBody TecnicoDTO dto){
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}
